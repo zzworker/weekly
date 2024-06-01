@@ -16,7 +16,7 @@ function getCreateDateFormat(filePath) {
 
 function getWeeklyDateFormat(num) {
 	if (num < 100) {
-		return dayjs('2022-10-10')
+		return dayjs('2024-06-01')
 			.subtract(100 - num, 'week')
 			.format(DEFAULT_FORMAT);
 	}
@@ -44,14 +44,11 @@ function defaultLayoutPlugin() {
 
 		frontmatter.desc = frontmatter.desc || SITE.description;
 		frontmatter.pic = frontmatter.pic || SITE.pic;
-
+		
 		if (!frontmatter.date) {
-			frontmatter.date =
-				SITE.repo === WEEKLY_REPO_NAME
-					? getWeeklyDateFormat(filePath.split('/posts/')[1].split('-')[0])
-					: getCreateDateFormat(filePath);
+			frontmatter.date = getCreateDateFormat(filePath);
 		}
-
+		
 		if (SITE.repo === WEEKLY_REPO_NAME) {
 			frontmatter.twitterImg = getTwitterImg(filePath.split('/posts/')[1].split('-')[0]);
 		}
