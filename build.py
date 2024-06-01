@@ -16,7 +16,7 @@ if __name__ == "__main__":
   recentfile=open('RECENT.md','w')
 
   for root, dirs, filenames in os.walk('./src/pages/posts'):
-    filenames = sorted(filenames, key=lambda x:float(re.findall("(\d+)",x)[0]), reverse=True)
+    filenames = sorted(filenames, key=lambda x:float(re.findall(r"(\d+)",x)[0]), reverse=True)
 
   for index, name in enumerate(filenames):
       if name.endswith('.md'):
@@ -29,7 +29,7 @@ if __name__ == "__main__":
         num = int(oldTitle.split('-')[0])
         if index < 5 :
           if num < 100 :
-            modified = dateList[99-num]
+            modified = dateList[99 - num]
           else :
             modified = fetch_ci_time('/src/pages/posts/' + filepath)
 
