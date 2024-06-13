@@ -46,7 +46,10 @@ function defaultLayoutPlugin() {
 		frontmatter.pic = frontmatter.pic || SITE.pic;
 		
 		if (!frontmatter.date) {
-			frontmatter.date = getCreateDateFormat(filePath);
+			frontmatter.date =
+			SITE.repo === WEEKLY_REPO_NAME
+				? getWeeklyDateFormat(filePath.split('/posts/')[1].split('-')[0])
+				: getCreateDateFormat(filePath);
 		}
 		
 		if (SITE.repo === WEEKLY_REPO_NAME) {
