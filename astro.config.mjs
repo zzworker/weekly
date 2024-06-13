@@ -15,12 +15,9 @@ function getCreateDateFormat(filePath) {
 }
 
 function getWeeklyDateFormat(num) {
-	if (num < 100) {
-		return dayjs('2024-06-01')
-			.subtract(100 - num, 'week')
+	return dayjs(SITE.startDate)
+			.add(num - 1, 'week')
 			.format(DEFAULT_FORMAT);
-	}
-	return getCreateDateFormat(filePath);
 }
 
 function getTwitterImg(num) {
